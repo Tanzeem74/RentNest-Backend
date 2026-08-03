@@ -4,6 +4,7 @@ import config from "./config";
 import cookieParser from "cookie-parser";
 import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 import { notFound } from "./middlewares/notFound";
+import { authRoutes } from "./modules/auth/auth.route";
 
 const app: Application = express();
 
@@ -21,7 +22,7 @@ app.get('/', async (req: Request, res: Response) => {
     res.send('Welcome to the RentNest API');
 })
 
-
+app.use('/api/auth',authRoutes);
 
 
 app.use(notFound);

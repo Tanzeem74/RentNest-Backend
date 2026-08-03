@@ -1,5 +1,3 @@
-// USER
-
 enum Role {
   TENANT
   LANDLORD
@@ -10,8 +8,6 @@ enum UserStatus {
   ACTIVE
   BLOCKED
 }
-
-// PROPERTY
 
 enum PropertyType {
   APARTMENT
@@ -26,8 +22,6 @@ enum PropertyStatus {
   RENTED
 }
 
-// RENTAL REQUEST
-
 enum RentalRequestStatus {
   PENDING
   APPROVED
@@ -35,8 +29,6 @@ enum RentalRequestStatus {
   ACTIVE
   COMPLETED
 }
-
-// PAYMENT
 
 enum PaymentProvider {
   STRIPE
