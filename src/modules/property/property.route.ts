@@ -6,9 +6,21 @@ import { propertyController } from "./property.controller";
 const router = Router();
 
 router.post(
-  "/",
-  auth(Role.LANDLORD),
-  propertyController.createProperty
+    "/",
+    auth(Role.LANDLORD),
+    propertyController.createProperty
+);
+router.get("/", propertyController.getAllProperties);
+router.get("/:id", propertyController.getSingleProperty);
+router.patch(
+    "/:id",
+    auth(Role.LANDLORD),
+    propertyController.updateProperty
+);
+router.delete(
+    "/:id",
+    auth(Role.LANDLORD),
+    propertyController.deleteProperty
 );
 
 export const propertyRoutes = router;
