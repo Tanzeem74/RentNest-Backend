@@ -1,13 +1,18 @@
 model Review {
-  id         String   @id @default(cuid())
-  rating     Int
-  comment    String
+  id String @id @default(cuid())
+
+  rating  Int
+  comment String?
+
   tenantId   String
   propertyId String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  property   Property @relation(fields: [propertyId], references: [id])
-  tenant     User     @relation(fields: [tenantId], references: [id])
 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  property Property @relation(fields: [propertyId], references: [id])
+  tenant   User     @relation(fields: [tenantId], references: [id])
+
+  @@unique([tenantId, propertyId])
   @@map("reviews")
 }

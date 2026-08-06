@@ -9,6 +9,7 @@ import { categoryRoutes } from "./modules/category/category.route";
 import { propertyRoutes } from "./modules/property/property.route";
 import { rentalRequestRoutes } from "./modules/rentalRequest/rentalRequest.route";
 import { landlordRoutes } from "./modules/landlord/landlord.route";
+import { paymentRoutes } from "./modules/payment/payment.route";
 
 const app: Application = express();
 
@@ -16,6 +17,11 @@ app.use(cors({
     origin: config.app_url,
     credentials: true
 }))
+
+app.use(
+    "/api/payments/confirm",
+    express.raw({ type: "application/json" })
+);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,11 +32,12 @@ app.get('/', async (req: Request, res: Response) => {
     res.send('Welcome to the RentNest API');
 })
 
-app.use('/api/auth',authRoutes);
-app.use('/api/categories',categoryRoutes);
-app.use('/api/properties',propertyRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/properties', propertyRoutes);
 app.use("/api/rentals", rentalRequestRoutes);
-app.use("/api/landlord",landlordRoutes);
+app.use("/api/landlord", landlordRoutes);
+app.use("/api/payments", paymentRoutes);
 
 
 app.use(notFound);
