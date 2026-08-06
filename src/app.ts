@@ -41,7 +41,6 @@ app.use("/api/landlord", landlordRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/reviews",reviewRoutes);
 
-
 app.use(notFound);
 app.use(globalErrorHandler);
 
