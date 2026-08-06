@@ -87,9 +87,91 @@ const getAllRentals = async () => {
 
     return result;
 };
+const getDashboardStatistics = async () => {
+
+    const totalUsers = await prisma.user.count();
+
+    const totalLandlords = await prisma.user.count({
+        where: {
+            role: "LANDLORD",
+        },
+    });
+
+    const totalTenants = await prisma.user.count({
+        where: {
+            role: "TENANT",
+        },
+    });
+
+    const totalProperties = await prisma.property.count();
+
+    const availableProperties = await prisma.property.count({
+        where: {
+            status: "AVAILABLE",
+        },
+    });
+
+    const rentedProperties = await prisma.property.count({
+        where: {
+            status: "RENTED",
+        },
+    });
+
+    const totalRentalRequests = await prisma.rentalRequest.count();
+
+    const pendingRequests = await prisma.rentalRequest.count({
+        where: {
+            status: "PENDING",
+        },
+    });
+
+    const approvedRequests = await prisma.rentalRequest.count({
+        where: {
+            status: "APPROVED",
+        },
+    });
+
+    const activeRentals = await prisma.rentalRequest.count({
+        where: {
+            status: "ACTIVE",
+        },
+    });
+
+    const completedPayments = await prisma.payment.count({
+        where: {
+            status: "COMPLETED",
+        },
+    });
+
+    const revenue = await prisma.payment.aggregate({
+        where: {
+            status: "COMPLETED",
+        },
+        _sum: {
+            amount: true,
+        },
+    });
+
+    return {
+        totalUsers,
+        totalLandlords,
+        totalTenants,
+        totalProperties,
+        availableProperties,
+        rentedProperties,
+        totalRentalRequests,
+        pendingRequests,
+        approvedRequests,
+        activeRentals,
+        completedPayments,
+        totalRevenue: revenue._sum.amount ?? 0,
+    };
+};
+
 export const adminServices = {
     getAllUsers,
     updateUserStatus,
     getAllProperties,
     getAllRentals,
+    getDashboardStatistics
 };

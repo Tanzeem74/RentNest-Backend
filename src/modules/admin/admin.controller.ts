@@ -61,10 +61,24 @@ const getAllRentals = catchAsync(async (req: Request, res: Response) => {
     });
 
 });
+const getDashboardStatistics = catchAsync(
+    async (req: Request, res: Response) => {
 
+        const result = await adminServices.getDashboardStatistics();
+
+        sendResponse(res, {
+            statusCode: httpStatus.OK,
+            success: true,
+            message: "Dashboard statistics retrieved successfully.",
+            data: result,
+        });
+
+    }
+);
 export const adminControllers = {
     getAllUsers,
     updateUserStatus,
     getAllProperties,
     getAllRentals,
+    getDashboardStatistics
 };

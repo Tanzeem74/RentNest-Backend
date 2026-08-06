@@ -28,5 +28,9 @@ router.get(
     auth(Role.ADMIN),
     adminControllers.getAllRentals
 );
-
+router.get(
+    "/dashboard",
+    auth(Role.ADMIN),
+    adminControllers.getDashboardStatistics
+);
 export const adminRoutes = router;
