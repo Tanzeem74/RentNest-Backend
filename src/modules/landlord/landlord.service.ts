@@ -83,8 +83,6 @@ const updateRentalRequestStatus = async (
                 },
             },
         });
-
-        // Auto Reject Other Pending Requests
         if (payload.status === RentalRequestStatus.APPROVED) {
             await tx.rentalRequest.updateMany({
                 where: {
