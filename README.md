@@ -537,9 +537,6 @@ BCRYPT_SALT_ROUNDS=
 STRIPE_SECRET_KEY=
 STRIPE_WEBHOOK_SECRET=
 ```
-
-> ⚠️ Never commit the real `.env` file or secret keys to GitHub.
-
 The project includes `.env.example` for reference.
 
 ---
@@ -788,7 +785,7 @@ Possible future improvements include:
 
 # 👨‍💻 Author
 
-## Tanzeem Afsar
+## Shah Tanzeem Afsar
 
 Computer Science & Engineering Student  
 Backend Developer | AI/ML Enthusiast
@@ -825,6 +822,6 @@ https://rent-nest-backend-beryl.vercel.app
 
 ---
 
-**© 2026 Tanzeem Afsar**
+**© 2026 Shah Tanzeem Afsar**
 
 </div>
